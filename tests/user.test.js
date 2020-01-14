@@ -1,5 +1,6 @@
 const request = require('supertest');
 const app = require('../src/app');
+const mongoose = require('mongoose');
 const User = require('../src/models/user');
 
 const { userOne, userOneId, setupDatabase } = require('./fixtures/db');
@@ -123,4 +124,9 @@ test('should not update invalid user fields', async () => {
       location: 'Ibadan'
     })
     .expect(400);
+});
+
+afterAll(async done => {
+  await mongoose.connection.close();
+  done();
 });
