@@ -1,5 +1,6 @@
 const request = require('supertest');
 const app = require('../src/app');
+const mongoose = require('mongoose');
 const Task = require('../src/models/task');
 const User = require('../src/models/user');
 
@@ -45,4 +46,9 @@ test('should not delete other users tasks', async () => {
 
   const task = await Task.findById(taskOne._id);
   expect(task).not.toBeNull();
+});
+
+afterAll(async done => {
+  await mongoose.connection.close();
+  done();
 });
