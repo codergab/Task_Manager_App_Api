@@ -8,6 +8,9 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+      - environment:
+          MONGODB_URL: mongodb://127.0.0.1:27017/task-manager-api
+          JWT_SECRET: thisisasecretformyapp
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
